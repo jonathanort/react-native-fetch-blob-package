@@ -119,7 +119,7 @@ NSOperationQueue *taskQueue;
         [cookieStr appendString:cookie.value];
         
         if(cookie.expiresDate == nil) {
-            [cookieStr appendString:@"; max-age=0"];
+            [cookieStr appendString:@"; max-age=60"];
         }
         else {
             [cookieStr appendString:@"; expires="];
@@ -219,8 +219,8 @@ NSOperationQueue *taskQueue;
     bodyLength = contentLength;
 
     // the session trust any SSL certification
-//    NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
-    NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:taskId];
+    NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
+//    NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:taskId];
 
     // set request timeout
     float timeout = [options valueForKey:@"timeout"] == nil ? -1 : [[options valueForKey:@"timeout"] floatValue];
@@ -395,6 +395,7 @@ NSOperationQueue *taskQueue;
             NSArray<NSHTTPCookie *> * cookies = [NSHTTPCookie cookiesWithResponseHeaderFields: headers forURL:response.URL];
             if(cookies != nil && [cookies count] > 0) {
                 [cookiesTable setObject:cookies forKey:response.URL.host];
+                [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookies:cookies forURL:response.URL mainDocumentURL:NULL];
             }
         }
         
@@ -627,8 +628,9 @@ NSOperationQueue *taskQueue;
 
 - (void) URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task willPerformHTTPRedirection:(NSHTTPURLResponse *)response newRequest:(NSURLRequest *)request completionHandler:(void (^)(NSURLRequest * _Nullable))completionHandler
 {
-    if(request.URL != nil)
+    if(request.URL != nil) {
         [redirects addObject:[request.URL absoluteString]];
+    }
     completionHandler(request);
 }
 
