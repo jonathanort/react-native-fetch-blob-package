@@ -11,7 +11,7 @@
 #import "RNFetchBlobNetwork.h"
 #import "RNFetchBlobConst.h"
 #import "RNFetchBlobFS.h"
-#import "RCTLog.h"
+#import <React/RCTLog.h>
 #import "IOS7Polyfill.h"
 
 @interface RNFetchBlobReqBuilder()

@@ -10,7 +10,7 @@
 #define RNFetchBlobNetwork_h
 
 #import <Foundation/Foundation.h>
-#import "RCTBridgeModule.h"
+#import <React/RCTBridgeModule.h>
 #import "RNFetchBlobProgress.h"
 #import "RNFetchBlobFS.h"
 

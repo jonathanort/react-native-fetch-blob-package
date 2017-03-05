@@ -8,9 +8,9 @@
 
 
 #import <Foundation/Foundation.h>
-#import "RCTBridge.h"
+#import <React/RCTBridge.h>
 #import "RNFetchBlob.h"
-#import "RCTEventDispatcher.h"
+#import <React/RCTEventDispatcher.h>
 #import "RNFetchBlobFS.h"
 #import "RNFetchBlobConst.h"
 #import "IOS7Polyfill.h"

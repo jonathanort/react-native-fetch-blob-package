@@ -6,7 +6,7 @@
 
 #ifndef RNFetchBlob_h
 #define RNFetchBlob_h
-#import "RCTBridgeModule.h"
+#import <React/RCTBridgeModule.h>
 #import <UIKit/UIKit.h>
 
 
